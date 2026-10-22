@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mamadou Ba — Développeur web</title>
+  <meta name="description" content="Portfolio de Mamadou Ba, développeur web : projets, compétences et contact.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%232563eb'/><text x='50' y='66' font-size='46' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'>MB</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#accueil" class="logo">MB<span>.</span></a>
+      <nav id="menu" class="menu">
+        <a href="#apropos">À propos</a>
+        <a href="#competences">Compétences</a>
+        <a href="#projets">Projets</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="theme" class="icon-btn" aria-label="Changer le thème">◐</button>
+        <button id="burger" class="icon-btn burger" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="accueil" class="hero container">
+      <p class="eyebrow">Bonjour, je suis</p>
+      <h1>Mamadou Ba</h1>
+      <h2 class="subtitle">Développeur web</h2>
+      <p class="lead">Je conçois des applications web utiles et simples à utiliser, du front-end à l'API. Mon dernier projet, SonkeMap, aide à calculer des itinéraires et à naviguer en Guinée.</p>
+      <div class="cta">
+        <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+        <a href="#contact" class="btn btn-ghost">Me contacter</a>
+      </div>
+    </section>
+
+    <section id="apropos" class="section container">
+      <h2 class="section-title">À propos</h2>
+      <div class="about">
+        <p>Passionné par le développement web, j'aime transformer un besoin concret en une application fonctionnelle. Je travaille principalement avec HTML, CSS, JavaScript et PHP, et j'utilise Git et GitHub pour versionner et publier mes projets.</p>
+        <p>Je cherche à progresser sur des projets réels, à apprendre de nouvelles technologies et à collaborer avec d'autres développeurs.</p>
+      </div>
+    </section>
+
+    <section id="competences" class="section container">
+      <h2 class="section-title">Compétences</h2>
+      <div class="skills">
+        <div class="card">
+          <h3>Front-end</h3>
+          <ul class="tags"><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Responsive design</li></ul>
+        </div>
+        <div class="card">
+          <h3>Back-end</h3>
+          <ul class="tags"><li>PHP</li><li>API REST</li></ul>
+        </div>
+        <div class="card">
+          <h3>Outils</h3>
+          <ul class="tags"><li>Git</li><li>GitHub</li><li>GitHub Pages</li><li>VS Code</li></ul>
+        </div>
+        <div class="card">
+          <h3>Cartographie</h3>
+          <ul class="tags"><li>OpenRouteService</li><li>Calcul d'itinéraire</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projets" class="section container">
+      <h2 class="section-title">Projets</h2>
+      <div class="projects">
+        <article class="card project featured">
+          <div class="project-head">
+            <h3>SonkeMap</h3>
+            <span class="badge">Projet phare</span>
+          </div>
+          <p>Application web de calcul d'itinéraire et de navigation pour la Guinée. Elle s'appuie sur l'API OpenRouteService pour proposer des trajets.</p>
+          <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>PHP</li><li>OpenRouteService</li></ul>
+          <div class="links">
+            <a href="https://mamadouba0228.github.io/sonkemap/" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Démo</a>
+            <a href="https://github.com/mamadouba0228/sonkemap" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Code source</a>
+          </div>
+        </article>
+        <article class="card project">
+          <h3>Portfolio</h3>
+          <p>Ce site : un portfolio statique, responsive, avec thème clair/sombre, hébergé gratuitement sur GitHub Pages.</p>
+          <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          <div class="links">
+            <a href="https://github.com/mamadouba0228/mamadouba0228.github.io" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Code source</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section container">
+      <h2 class="section-title">Contact</h2>
+      <p class="lead">Une idée de projet, une opportunité ou une question ? N'hésitez pas à me contacter.</p>
+      <div class="cta">
+        <a href="https://github.com/mamadouba0228" target="_blank" rel="noopener" class="btn btn-primary">GitHub</a>
+        <!-- Pour afficher votre e-mail, décommentez la ligne suivante :
+        <a href="mailto:votre@email.com" class="btn btn-ghost">E-mail</a>
+        -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© <span id="year"></span> Mamadou Ba — Hébergé sur GitHub Pages</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
