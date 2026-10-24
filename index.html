@@ -1,117 +1,426 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mamadou Ba — Développeur web</title>
-  <meta name="description" content="Portfolio de Mamadou Ba, développeur web : projets, compétences et contact.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%232563eb'/><text x='50' y='66' font-size='46' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'>MB</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mamadou BA – Géomaticien | Portfolio</title>
+<meta name="description" content="Portfolio de Mamadou BA, géomaticien : cartographie, applications WebSIG, bases de données PostGIS et automatisation.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230E6E6B'/><path d='M14 70 C30 50 50 78 86 40' fill='none' stroke='white' stroke-width='7'/><path d='M14 46 C34 28 54 52 86 18' fill='none' stroke='%23D6ECEA' stroke-width='5'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    --fond: #F2F5F3;
+    --surface: #FFFFFF;
+    --encre: #16243A;
+    --texte: #2C3A4F;
+    --discret: #5B6B80;
+    --courbe: #9DB8B0;
+    --accent: #0E6E6B;
+    --accent-clair: #D6ECEA;
+    --trait: #D3DCD8;
+    --rayon: 6px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --fond: #0F1A22;
+      --surface: #16242E;
+      --encre: #EAF1EE;
+      --texte: #C9D6D2;
+      --discret: #8EA3A0;
+      --courbe: #29443F;
+      --accent: #5CC2BC;
+      --accent-clair: #183A39;
+      --trait: #26363F;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+  body {
+    margin: 0;
+    background: var(--fond);
+    color: var(--texte);
+    font-family: "Source Sans 3", "Segoe UI", Arial, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+  a { color: var(--accent); }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  img { max-width: 100%; display: block; }
+  .page { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* Navigation */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--fond) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--trait);
+  }
+  nav .page { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 60px; }
+  nav .nom { font-family: "Bricolage Grotesque", Arial, sans-serif; font-weight: 700; color: var(--encre); text-decoration: none; white-space: nowrap; }
+  nav ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; }
+  nav ul a { color: var(--texte); text-decoration: none; font-weight: 600; font-size: .95rem; white-space: nowrap; }
+  nav ul a:hover { color: var(--accent); }
+  @media (max-width: 760px) {
+    nav .page { height: auto; flex-direction: column; align-items: flex-start; gap: 4px; padding-top: 10px; padding-bottom: 8px; }
+    nav ul { gap: 18px; width: 100%; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+    nav ul::-webkit-scrollbar { display: none; }
+    html { scroll-padding-top: 90px; }
+  }
+
+  /* En-tête : courbes de niveau */
+  header { position: relative; overflow: hidden; border-bottom: 1px solid var(--trait); }
+  header svg.relief { position: absolute; inset: 0; width: 100%; height: 100%; }
+  header svg.relief path { fill: none; stroke: var(--courbe); stroke-width: 1.2; }
+  header svg.relief path.maitresse { stroke-width: 2.2; }
+  header .page { position: relative; padding-top: 96px; padding-bottom: 88px; }
+  header h1 {
+    font-family: "Bricolage Grotesque", Arial, sans-serif;
+    font-weight: 800; color: var(--encre);
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    line-height: 1.02; letter-spacing: -0.02em;
+    margin: 0 0 18px; max-width: 14ch;
+  }
+  header .role { font-size: 1.3rem; color: var(--encre); margin: 0 0 14px; font-weight: 600; }
+  header .resume { max-width: 58ch; margin: 0 0 30px; }
+  @media (max-width: 640px) { header .page { padding-top: 56px; padding-bottom: 56px; } header .role { font-size: 1.1rem; } }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .bouton {
+    display: inline-block; padding: 12px 20px; border-radius: var(--rayon);
+    font-weight: 600; text-decoration: none; border: 2px solid var(--accent);
+  }
+  .bouton.plein { background: var(--accent); color: var(--surface); }
+  .bouton.vide { color: var(--accent); background: var(--surface); }
+  .bouton:hover { filter: brightness(1.08); }
+
+  /* Sections */
+  section { padding: 80px 0 24px; }
+  h2 {
+    font-family: "Bricolage Grotesque", Arial, sans-serif;
+    font-weight: 700; color: var(--encre);
+    font-size: clamp(1.8rem, 4vw, 2.4rem); margin: 0 0 10px; letter-spacing: -0.01em;
+  }
+  .intro { max-width: 62ch; margin: 0 0 36px; color: var(--discret); }
+  h3 { font-family: "Bricolage Grotesque", Arial, sans-serif; color: var(--encre); font-size: 1.35rem; margin: 0 0 8px; }
+
+  /* Applications */
+  .phare + .phare { margin-top: 28px; }
+  .phare {
+    display: grid; grid-template-columns: 1.15fr 1fr; gap: 0;
+    background: var(--surface); border: 1px solid var(--trait); border-radius: 10px; overflow: hidden;
+  }
+  .phare .visuel { min-height: 320px; }
+  .phare .visuel img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .phare .texte { padding: 36px; }
+  .outils { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 24px; padding: 0; list-style: none; }
+  .outils li { font-size: .88rem; padding: 3px 10px; border: 1px solid var(--trait); border-radius: 20px; color: var(--discret); }
+  @media (max-width: 800px) { .phare { grid-template-columns: 1fr; } .phare .visuel { min-height: 220px; aspect-ratio: 16 / 10; } .phare .texte { padding: 26px; } }
+
+  /* Visuel absent : illustration en courbes de niveau (disparaît dès que l'image est ajoutée) */
+  .visuel, .cadre { position: relative; background: var(--accent-clair); }
+  .sans-image::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      repeating-radial-gradient(circle at 70% 35%, transparent 0 22px, var(--courbe) 23px 24px),
+      var(--accent-clair);
+    opacity: .55;
+  }
+  .sans-image::after {
+    content: attr(data-titre); position: absolute; left: 20px; bottom: 16px; right: 20px;
+    font-family: "Bricolage Grotesque", Arial, sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--accent);
+  }
+
+  /* Galerie de cartes */
+  .galerie { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; }
+  .carte figure { margin: 0; }
+  .carte .cadre { aspect-ratio: 4 / 3; border: 1px solid var(--trait); border-radius: var(--rayon); overflow: hidden; }
+  .carte .cadre a { display: block; height: 100%; cursor: zoom-in; }
+  .carte .cadre img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  .carte .cadre a:hover img { transform: scale(1.03); }
+  .carte figcaption { padding-top: 14px; }
+  .carte p { margin: 0 0 6px; }
+  .carte .meta { color: var(--discret); font-size: .92rem; }
+  @media (max-width: 400px) { .galerie { grid-template-columns: 1fr; } }
+
+  /* Scripts */
+  .scripts { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 32px; border-top: 1px solid var(--trait); }
+  .script { padding: 26px 0; border-bottom: 1px solid var(--trait); }
+  .script .langage { font-weight: 600; color: var(--accent); font-size: .95rem; }
+  .script p { margin: 6px 0 12px; }
+
+  /* Compétences */
+  .competences { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 30px 40px; }
+  .competences h3 { font-size: 1.1rem; margin-bottom: 6px; }
+  .competences p { margin: 0; }
+
+  /* Parcours : chronologie */
+  .parcours { list-style: none; margin: 0; padding: 0 0 0 26px; border-left: 2px solid var(--courbe); }
+  .parcours li { position: relative; padding: 0 0 30px; }
+  .parcours li::before {
+    content: ""; position: absolute; left: -34px; top: 7px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--fond); border: 3px solid var(--accent);
+  }
+  .parcours .quand { color: var(--discret); font-size: .95rem; }
+  .parcours h3 { font-size: 1.15rem; margin: 2px 0 4px; }
+  .parcours p { margin: 0; max-width: 65ch; }
+
+  /* Contact */
+  .contact { background: var(--encre); color: var(--fond); margin-top: 80px; }
+  .contact .page { padding-top: 70px; padding-bottom: 70px; }
+  .contact h2 { color: var(--fond); }
+  .contact p { max-width: 55ch; }
+  .contact ul { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 10px; }
+  .contact a { color: var(--fond); font-weight: 600; }
+  footer { text-align: center; color: var(--discret); font-size: .9rem; padding: 24px; }
+
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .carte .cadre img { transition: none; } }
+</style>
+<script>
+  // Image absente : on la retire et on affiche l'illustration de remplacement
+  function repli(img) {
+    var cadre = img.closest(".visuel, .cadre");
+    var lien = img.closest("a");
+    cadre.classList.add("sans-image");
+    (lien || img).remove();
+  }
+</script>
 </head>
 <body>
-  <header class="nav">
-    <div class="container nav-inner">
-      <a href="#accueil" class="logo">MB<span>.</span></a>
-      <nav id="menu" class="menu">
-        <a href="#apropos">À propos</a>
-        <a href="#competences">Compétences</a>
-        <a href="#projets">Projets</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="nav-actions">
-        <button id="theme" class="icon-btn" aria-label="Changer le thème">◐</button>
-        <button id="burger" class="icon-btn burger" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+
+<nav aria-label="Navigation principale">
+  <div class="page">
+    <a class="nom" href="#haut">Mamadou BA</a>
+    <ul>
+      <li><a href="#projets">Applications</a></li>
+      <li><a href="#cartes">Cartes</a></li>
+      <li><a href="#scripts">Scripts</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#parcours">Parcours</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header id="haut">
+  <!-- Courbes de niveau décoratives -->
+  <svg class="relief" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path class="maitresse" d="M760,-20 C900,60 1010,40 1080,130 C1150,220 1240,250 1260,330"/>
+    <path d="M720,-20 C860,90 980,80 1040,170 C1100,260 1200,300 1240,400"/>
+    <path d="M680,-20 C820,120 950,120 1000,210 C1050,300 1150,350 1220,470"/>
+    <path d="M640,-20 C780,150 910,160 960,250 C1010,340 1100,400 1190,540"/>
+    <path class="maitresse" d="M600,-20 C740,180 870,200 920,290 C970,380 1050,450 1150,560"/>
+    <path d="M560,-20 C700,210 830,240 880,330 C930,420 1000,500 1100,580"/>
+    <path d="M520,-20 C660,240 790,280 840,370 C890,460 950,540 1040,600"/>
+    <path d="M1020,520 C1050,470 1110,450 1150,470 C1190,490 1200,540 1200,560"/>
+    <path d="M1060,540 C1080,505 1120,495 1150,508 C1175,520 1185,545 1185,560"/>
+  </svg>
+  <div class="page">
+    <p class="role">Géomaticien – SIG, réseaux et données géographiques</p>
+    <h1>Mamadou BA</h1>
+    <p class="resume">Je conçois des bases de données géographiques fiables, des cartes qui aident à décider et des outils qui simplifient le travail des équipes. Cinq ans d'expérience chez Enedis, Suez Eau et en collectivités territoriales.</p>
+    <div class="actions">
+      <a class="bouton plein" href="#projets">Voir mes projets</a>
+      <!-- Placez votre CV dans le dossier documents/ sous ce nom -->
+      <a class="bouton vide" href="documents/cv-mamadou-ba.pdf" target="_blank" rel="noopener">Télécharger mon CV</a>
+    </div>
+  </div>
+</header>
+
+<!--
+  IMAGES : déposez simplement les fichiers aux chemins indiqués (src="...").
+  Tant qu'une image est absente, une illustration en courbes de niveau s'affiche à sa place.
+-->
+
+<main>
+  <!-- APPLICATIONS -->
+  <section id="projets">
+    <div class="page">
+      <h2>Applications</h2>
+      <p class="intro">Deux applications cartographiques que j'ai conçues et développées. Vous pouvez les tester directement.</p>
+      <article class="phare">
+        <div class="visuel" data-titre="SonkeMap">
+          <img src="images/applications/sonkemap.png" alt="Écran de l'application SonkeMap" loading="lazy" onerror="repli(this)">
+        </div>
+        <div class="texte">
+          <h3>SonkeMap, calcul d'itinéraire en Guinée</h3>
+          <p>Application web de calcul d'itinéraire pensée pour les routes guinéennes : recherche du départ et de la destination, tracé du trajet, instructions de navigation vocales et signalement des dangers sur la route. Elle s'installe sur un téléphone comme une application.</p>
+          <ul class="outils">
+            <li>JavaScript</li><li>OpenLayers</li><li>OpenRouteService</li><li>PHP</li><li>Application web installable (PWA)</li>
+          </ul>
+          <div class="actions">
+            <a class="bouton plein" href="https://mamadouba0228.github.io/sonkemap/demo/" target="_blank" rel="noopener">Tester l'application</a>
+            <a class="bouton vide" href="https://github.com/mamadouba0228/sonkemap" target="_blank" rel="noopener">Voir le code</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="phare">
+        <div class="visuel" data-titre="Guinée Carto">
+          <img src="images/applications/guinee-carto.png" alt="Écran de l'application Guinée Carto" loading="lazy" onerror="repli(this)">
+        </div>
+        <div class="texte">
+          <h3>Guinée Carto, cartographie participative</h3>
+          <p>Application de collecte collaborative pour enrichir la carte de la Guinée. Chacun peut ajouter un lieu, une route ou une zone depuis son téléphone, avec son état, sa praticabilité, son revêtement et une photo. Les contributions sont enregistrées hors ligne, envoyées dès le retour du réseau, puis vérifiées avant publication sous licence ouverte (ODbL).</p>
+          <ul class="outils">
+            <li>Collecte terrain</li><li>Mode hors ligne</li><li>Modération des contributions</li><li>Application web installable (PWA)</li><li>Licence ODbL</li>
+          </ul>
+          <div class="actions">
+            <a class="bouton plein" href="https://lamadgeo.alwaysdata.net/sonkecarto/index.html" target="_blank" rel="noopener">Tester l'application</a>
+            <a class="bouton vide" href="https://lamadgeo.alwaysdata.net/sonkecarto/stats.html" target="_blank" rel="noopener">Voir l'avancement</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- CARTES -->
+  <section id="cartes">
+    <div class="page">
+      <h2>Cartographie</h2>
+      <p class="intro">Des cartes et des atlas produits pour aider les services à décider. Cliquez sur une carte pour l'ouvrir en haute définition.</p>
+      <div class="galerie">
+        <!-- Pour ajouter une carte : copiez un bloc <article class="carte"> et changez l'image, le titre et le texte.
+             Le lien (href) peut pointer vers l'image elle-même ou vers un PDF haute définition dans documents/. -->
+        <article class="carte">
+          <figure>
+            <div class="cadre" data-titre="Réseau d'eau potable">
+              <a href="images/cartes/reseau-eau-potable.jpg" target="_blank" rel="noopener">
+                <img src="images/cartes/reseau-eau-potable.jpg" alt="Carte du réseau d'eau potable selon l'âge et le matériau des canalisations" loading="lazy" onerror="repli(this)">
+              </a>
+            </div>
+            <figcaption>
+              <h3>Réseau d'eau potable : âge et renouvellement</h3>
+              <p>Le réseau classé par date de pose et par matériau, pour repérer les canalisations à renouveler en priorité. Une carte d'aide à la gestion patrimoniale.</p>
+              <p class="meta">QGIS, PostGIS – données ouvertes de la collectivité (Licence Ouverte)</p>
+            </figcaption>
+          </figure>
+        </article>
+        <article class="carte">
+          <figure>
+            <div class="cadre" data-titre="Réseau électrique">
+              <a href="images/cartes/reseau-electrique.jpg" target="_blank" rel="noopener">
+                <img src="images/cartes/reseau-electrique.jpg" alt="Carte du taux d'enfouissement du réseau électrique par commune" loading="lazy" onerror="repli(this)">
+              </a>
+            </div>
+            <figcaption>
+              <h3>Réseau électrique : taux d'enfouissement par commune</h3>
+              <p>Les lignes moyenne tension aériennes et souterraines, et la part du réseau enfoui dans chaque commune. Une analyse utile aux syndicats d'énergie.</p>
+              <p class="meta">QGIS, PostGIS – Enedis Open Data (Licence Ouverte)</p>
+            </figcaption>
+          </figure>
+        </article>
+        <article class="carte">
+          <figure>
+            <div class="cadre" data-titre="Atlas">
+              <a href="images/cartes/atlas-1.jpg" target="_blank" rel="noopener">
+                <img src="images/cartes/atlas-1.jpg" alt="Page de l'atlas" loading="lazy" onerror="repli(this)">
+              </a>
+            </div>
+            <figcaption>
+              <h3>Titre de l'atlas</h3>
+              <p>Contexte : à quoi l'atlas a servi et pour qui.</p>
+              <p class="meta">QGIS (Atlas), données utilisées</p>
+            </figcaption>
+          </figure>
+        </article>
       </div>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section id="accueil" class="hero container">
-      <p class="eyebrow">Bonjour, je suis</p>
-      <h1>Mamadou Ba</h1>
-      <h2 class="subtitle">Développeur web</h2>
-      <p class="lead">Je conçois des applications web utiles et simples à utiliser, du front-end à l'API. Mon dernier projet, SonkeMap, aide à calculer des itinéraires et à naviguer en Guinée.</p>
-      <div class="cta">
-        <a href="#projets" class="btn btn-primary">Voir mes projets</a>
-        <a href="#contact" class="btn btn-ghost">Me contacter</a>
-      </div>
-    </section>
-
-    <section id="apropos" class="section container">
-      <h2 class="section-title">À propos</h2>
-      <div class="about">
-        <p>Passionné par le développement web, j'aime transformer un besoin concret en une application fonctionnelle. Je travaille principalement avec HTML, CSS, JavaScript et PHP, et j'utilise Git et GitHub pour versionner et publier mes projets.</p>
-        <p>Je cherche à progresser sur des projets réels, à apprendre de nouvelles technologies et à collaborer avec d'autres développeurs.</p>
-      </div>
-    </section>
-
-    <section id="competences" class="section container">
-      <h2 class="section-title">Compétences</h2>
-      <div class="skills">
-        <div class="card">
-          <h3>Front-end</h3>
-          <ul class="tags"><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Responsive design</li></ul>
+  <!-- SCRIPTS -->
+  <section id="scripts">
+    <div class="page">
+      <h2>Scripts et automatisation</h2>
+      <p class="intro">Des traitements que j'ai automatisés pour gagner du temps et fiabiliser les données. Le code et ses explications sont sur GitHub.</p>
+      <div class="scripts">
+        <div class="script">
+          <span class="langage">Python</span>
+          <h3>Titre du script</h3>
+          <p>Ce que fait le script, en une ou deux phrases.</p>
+          <a href="https://github.com/mamadouba0228" target="_blank" rel="noopener">Voir le code sur GitHub</a>
         </div>
-        <div class="card">
-          <h3>Back-end</h3>
-          <ul class="tags"><li>PHP</li><li>API REST</li></ul>
+        <div class="script">
+          <span class="langage">SQL / PostGIS</span>
+          <h3>Titre des requêtes</h3>
+          <p>L'analyse ou le contrôle réalisé, en une ou deux phrases.</p>
+          <a href="https://github.com/mamadouba0228" target="_blank" rel="noopener">Voir le code sur GitHub</a>
         </div>
-        <div class="card">
-          <h3>Outils</h3>
-          <ul class="tags"><li>Git</li><li>GitHub</li><li>GitHub Pages</li><li>VS Code</li></ul>
-        </div>
-        <div class="card">
-          <h3>Cartographie</h3>
-          <ul class="tags"><li>OpenRouteService</li><li>Calcul d'itinéraire</li></ul>
+        <div class="script">
+          <span class="langage">FME</span>
+          <h3>Titre du traitement</h3>
+          <p>Le flux automatisé et son résultat, en une ou deux phrases.</p>
+          <a href="https://github.com/mamadouba0228" target="_blank" rel="noopener">Voir le code sur GitHub</a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="projets" class="section container">
-      <h2 class="section-title">Projets</h2>
-      <div class="projects">
-        <article class="card project featured">
-          <div class="project-head">
-            <h3>SonkeMap</h3>
-            <span class="badge">Projet phare</span>
-          </div>
-          <p>Application web de calcul d'itinéraire et de navigation pour la Guinée. Elle s'appuie sur l'API OpenRouteService pour proposer des trajets.</p>
-          <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>PHP</li><li>OpenRouteService</li></ul>
-          <div class="links">
-            <a href="https://mamadouba0228.github.io/sonkemap/" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Démo</a>
-            <a href="https://github.com/mamadouba0228/sonkemap" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Code source</a>
-          </div>
-        </article>
-        <article class="card project">
-          <h3>Portfolio</h3>
-          <p>Ce site : un portfolio statique, responsive, avec thème clair/sombre, hébergé gratuitement sur GitHub Pages.</p>
-          <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
-          <div class="links">
-            <a href="https://github.com/mamadouba0228/mamadouba0228.github.io" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Code source</a>
-          </div>
-        </article>
+  <!-- COMPETENCES -->
+  <section id="competences">
+    <div class="page">
+      <h2>Compétences</h2>
+      <p class="intro">Les outils que j'utilise au quotidien.</p>
+      <div class="competences">
+        <div><h3>SIG et cartographie</h3><p>QGIS, ArcGIS Pro, ArcGIS Online, Adobe Illustrator</p></div>
+        <div><h3>Bases de données</h3><p>PostgreSQL/PostGIS, Oracle, SQL, structuration et modélisation</p></div>
+        <div><h3>Automatisation</h3><p>FME, Python, modeleurs graphiques de QGIS et d'ArcGIS Pro</p></div>
+        <div><h3>WebSIG</h3><p>Écosystème Esri, Business GEO, Arcopole Pro, OpenLayers</p></div>
+        <div><h3>Référentiels et réseaux</h3><p>PCRS, Base Adresse Locale, cadastre, eau, assainissement, éclairage public</p></div>
+        <div><h3>Terrain et DAO</h3><p>GNSS, QField, ArcGIS Field Maps, AutoCAD, Covadis</p></div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="contact" class="section container">
-      <h2 class="section-title">Contact</h2>
-      <p class="lead">Une idée de projet, une opportunité ou une question ? N'hésitez pas à me contacter.</p>
-      <div class="cta">
-        <a href="https://github.com/mamadouba0228" target="_blank" rel="noopener" class="btn btn-primary">GitHub</a>
-        <!-- Pour afficher votre e-mail, décommentez la ligne suivante :
-        <a href="mailto:votre@email.com" class="btn btn-ghost">E-mail</a>
-        -->
-      </div>
-    </section>
-  </main>
+  <!-- PARCOURS -->
+  <section id="parcours">
+    <div class="page">
+      <h2>Parcours</h2>
+      <p class="intro">Quatre ans d'alternance et une première expérience en entreprise.</p>
+      <ol class="parcours" reversed>
+        <li>
+          <span class="quand">2024 – 2026</span>
+          <h3>Chargé de projets SIG (alternance), Enedis Bretagne</h3>
+          <p>Mise à jour du PCRS, chaînes de traitement FME et Python, applications WebSIG et atlas d'aide à la décision.</p>
+        </li>
+        <li>
+          <span class="quand">2023 – 2024</span>
+          <h3>Technicien SIG (alternance), Communauté d'agglomération du Grand Dole</h3>
+          <p>Administration des bases PostgreSQL/PostGIS, intégration des données de réseaux, application de gestion des arbres et des espaces verts.</p>
+        </li>
+        <li>
+          <span class="quand">2022 – 2023</span>
+          <h3>Technicien SIG (alternance), Communauté de communes du Pays Bigouden Sud</h3>
+          <p>Contrôle qualité des données de réseaux, administration du WebSIG et formation des utilisateurs.</p>
+        </li>
+        <li>
+          <span class="quand">2019 – 2021</span>
+          <h3>Technicien SIG, Suez Eau, Dakar</h3>
+          <p>Intégration des plans de récolement du réseau d'eau potable et relevés sur le terrain.</p>
+        </li>
+      </ol>
+      <p>Formation : Chef de projet géomatique (Bac+5), IDGEO, 2024 – 2026.</p>
+    </div>
+  </section>
+</main>
 
-  <footer class="footer">
-    <div class="container">© <span id="year"></span> Mamadou Ba — Hébergé sur GitHub Pages</div>
-  </footer>
+<section class="contact" id="contact">
+  <div class="page">
+    <h2>Travaillons ensemble</h2>
+    <p>Je recherche un poste de géomaticien et je suis mobile sur toute la France. Écrivez-moi ou appelez-moi pour échanger.</p>
+    <ul>
+      <li><a href="mailto:mamadouba0228@gmail.com">mamadouba0228@gmail.com</a></li>
+      <li><a href="tel:+33758625184">07 58 62 51 84</a></li>
+      <li><a href="https://www.linkedin.com/in/mamadou-lamarana-ba-7754331a4/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://github.com/mamadouba0228" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</section>
 
-  <script src="script.js"></script>
+<footer>© 2026 Mamadou BA</footer>
+
 </body>
 </html>

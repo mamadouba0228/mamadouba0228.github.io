@@ -1,15 +1,26 @@
-# Portfolio — Mamadou Ba
+# Portfolio — Mamadou BA, géomaticien
 
-Site personnel hébergé sur GitHub Pages : https://mamadouba0228.github.io
+Site en ligne : https://mamadouba0228.github.io
 
-## Structure
+Tout le site tient dans `index.html`.
 
-- `index.html` — contenu du site (à propos, compétences, projets, contact)
-- `style.css` — mise en forme (thème clair/sombre, responsive)
-- `script.js` — menu mobile et changement de thème
-- `images/`, `documents/` — images et fichiers (CV, etc.)
+## Ajouter les images
 
-## Mettre à jour le site
+Déposez les fichiers à ces emplacements, avec exactement ces noms :
+
+| Fichier | Contenu |
+|---|---|
+| `images/applications/sonkemap.png` | Capture d'écran de SonkeMap |
+| `images/applications/guinee-carto.png` | Capture d'écran de Guinée Carto |
+| `images/cartes/reseau-eau-potable.jpg` | Carte du réseau d'eau potable |
+| `images/cartes/reseau-electrique.jpg` | Carte du réseau électrique |
+| `images/cartes/atlas-1.jpg` | Page d'atlas |
+| `documents/cv-mamadou-ba.pdf` | CV |
+
+Tant qu'une image manque, une illustration en courbes de niveau s'affiche à sa place.
+Conseil : exportez les cartes en JPG d'environ 2000 px de large.
+
+## Publier les modifications
 
 ```bash
 git add .
@@ -17,4 +28,4 @@ git commit -m "Mise à jour du portfolio"
 git push
 ```
 
-Le site se met à jour automatiquement en une à deux minutes.
+Le site se met à jour en une à deux minutes.
