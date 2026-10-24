@@ -15,7 +15,6 @@ Déposez les fichiers à ces emplacements, avec exactement ces noms :
 | `images/cartes/reseau-eau-potable.jpg` | Carte du réseau d'eau potable |
 | `images/cartes/reseau-electrique.jpg` | Carte du réseau électrique |
 | `images/cartes/atlas-1.jpg` | Page d'atlas |
-| `documents/cv-mamadou-ba.pdf` | CV |
 
 Tant qu'une image manque, une illustration en courbes de niveau s'affiche à sa place.
 Conseil : exportez les cartes en JPG d'environ 2000 px de large.
